@@ -5,6 +5,8 @@ const expressSession = require('express-session')
 
 // database related imports
 require('./database/conn')
+const profileDetail = require('./database/userDetails')
+const { initializePassport, isAuthenticated } = require('./passportConfig')
 
 // establishing the port
 const port = 3000 || process.env.PORT
@@ -32,8 +34,36 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
+// login page route
 app.get('/', (req, res) => {
-    res.send('Hello World')
+    res.sendFile(path.join(__dirname, "public", "html", "signIn.html"))
+})
+
+app.post('/', (req, res) => {
+    if(req.isAuthenticated()){
+        req.logout() // logout the current user
+        console.log("User logged out")
+    }
+
+    passport.authenticate("local", {
+        successRedirect: '/profile',
+        failureRedirect: '/',
+        failureFlash: true
+    })(req, res, next)
+})
+
+// sign up page route
+app.get('/register-user', (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "html", "signUp.html"))
+})
+
+// profile page routes
+app.get('/profile', isAuthenticated, async (req, res) => {
+    // try{
+    //     const {firstName, lastName, emailID, password}
+    // } catch(err){
+    //     console.log("ERROR")
+    // }
 })
 
 app.listen(port, () => {
