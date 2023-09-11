@@ -2,6 +2,7 @@ const express = require('express')
 const path = require('path')
 const passport = require('passport')
 const expressSession = require('express-session')
+require('dotenv').config()
 
 // database related imports
 require('./database/conn')
@@ -25,7 +26,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use(express.json())
-app.use(express.urlencoded({extended: false}))
+app.use(express.urlencoded({ extended: false }))
 
 // setting up the public folder
 app.use(express.static(path.join(__dirname, 'public')))
@@ -40,7 +41,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/', (req, res) => {
-    if(req.isAuthenticated()){
+    if (req.isAuthenticated()) {
         req.logout() // logout the current user
         console.log("User logged out")
     }
@@ -59,11 +60,24 @@ app.get('/register-user', (req, res) => {
 
 // profile page routes
 app.get('/profile', isAuthenticated, async (req, res) => {
-    // try{
-    //     const {firstName, lastName, emailID, password}
-    // } catch(err){
-    //     console.log("ERROR")
-    // }
+    try {
+        const { firstName, lastName, emailID, password } = req.user
+        console.log(`User retrieved`)
+        res.render('profile', { firstName, lastName, emailID, password })
+    } catch (err) {
+        console.log("ERROR")
+        res.status(500).json({ error: "Error in retrieving the details", errorMessage: err })
+    }
+})
+
+// logout route
+app.get('/logout', (req, res) => {
+    req.logout((err) => {
+        if (err) {
+            console.log(err)
+            res.status(500).json({ error: "Error in logging out the user", errorMessage: err })
+        }
+    })
 })
 
 app.listen(port, () => {
