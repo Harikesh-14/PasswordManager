@@ -7,7 +7,7 @@ require('dotenv').config()
 // database related imports
 require('./database/conn')
 const profileDetail = require('./database/userDetails')
-const { initializePassport, isAuthenticated } = require('./passportConfig')
+const { initializePassport, isAuthenticated } = require('./passportConfig');
 
 // establishing the port
 const port = 3000 || process.env.PORT
@@ -40,22 +40,38 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, "public", "html", "signIn.html"))
 })
 
-app.post('/', (req, res) => {
+app.post('/', (req, res, next) => {
     if (req.isAuthenticated()) {
-        req.logout() // logout the current user
-        console.log("User logged out")
+        req.logout(); // Log out the current user
+        console.log('User logged out');
     }
-
     passport.authenticate("local", {
         successRedirect: '/profile',
         failureRedirect: '/',
         failureFlash: true
-    })(req, res, next)
-})
+    })(req, res, next);
+});
 
 // sign up page route
 app.get('/register-user', (req, res) => {
     res.sendFile(path.join(__dirname, "public", "html", "signUp.html"))
+})
+
+app.post('/register-user', async (req, res) => {
+    try {
+        const profileList = new profileDetail({
+            firstName: req.body.signUpFirstName,
+            lastName: req.body.signUpLastName,
+            emailID: req.body.signUpEmail,
+            password: req.body.signUpPassword,
+        })
+
+        await profileList.save()
+        res.redirect('/')
+    } catch (err) {
+        console.log("Ann error occurred")
+        res.status(500).json({ error: "Error while registering the detail", errorMessage: err })
+    }
 })
 
 // profile page routes
