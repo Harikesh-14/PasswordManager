@@ -22,6 +22,7 @@ app.use(expressSession({
 }))
 
 // setting up passport
+initializePassport(passport)
 app.use(passport.initialize())
 app.use(passport.session())
 
