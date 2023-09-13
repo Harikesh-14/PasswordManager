@@ -38,7 +38,11 @@ app.set('view engine', 'ejs')
 
 // login page route
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "html", "signIn.html"))
+    if (req.isAuthenticated()) {
+        res.redirect('profile')
+    } else {
+        res.sendFile(path.join(__dirname, "public", "html", "signIn.html"))
+    }
 })
 
 app.post('/', (req, res, next) => {
@@ -88,14 +92,19 @@ app.get('/profile', isAuthenticated, async (req, res) => {
 })
 
 // logout route
-app.get('/logout', (req, res) => {
-    req.logout((err) => {
-        if (err) {
-            console.log(err)
-            res.status(500).json({ error: "Error in logging out the user", errorMessage: err })
-        }
-    })
-})
+app.get('/logout', function (req, res, next) {
+    req.logout(function (err) {
+        if (err) { return next(err); }
+        res.redirect('/');
+    });
+});
+
+app.post('/logout', function (req, res, next) {
+    req.logout(function (err) {
+        if (err) { return next(err); }
+        res.redirect('/');
+    });
+});
 
 app.listen(port, () => {
     console.log(`Your server is running at port: ${port}`)
