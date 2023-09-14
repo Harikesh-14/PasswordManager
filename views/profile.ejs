@@ -6,16 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard | <%= firstName %>
     </title>
+    <link rel="stylesheet" href="/css/navbar.css">
 </head>
 
 <body>
     <nav>
         <p><a href="/">PasswordManager</a></p>
-        <div class="profileContainer">
-            <img src="#" alt="User Logo">
-            <p><%= firstName %></p>
+        <div class="profileAndLogout">
+            <div class="profileContainer">
+                <img src="/pics/loginAvatar.png" alt="User Logo">
+                <p><%= firstName %></p>
+                <p><i class="fa-solid fa-caret-down"></i></p>
+            </div>
+            <button id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
         </div>
     </nav>
+    <script src="https://kit.fontawesome.com/e6506fb756.js" crossorigin="anonymous"></script>
+    <script>
+        let logoutBtn = document.getElementById('logoutBtn')
+
+        logoutBtn.addEventListener('click', () => {
+            window.location.href = "/logout"
+        })
+    </script>
 </body>
 
 </html>
