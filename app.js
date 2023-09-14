@@ -83,7 +83,6 @@ app.post('/register-user', async (req, res) => {
 app.get('/profile', isAuthenticated, async (req, res) => {
     try {
         const { firstName, lastName, emailID, password } = req.user
-        console.log(`User retrieved`)
         res.render('profile', { firstName, lastName, emailID, password })
     } catch (err) {
         console.log("ERROR")

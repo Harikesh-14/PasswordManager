@@ -7,9 +7,12 @@
     <title>Dashboard | <%= firstName %>
     </title>
     <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/websiteInfo.css">
+    <link rel="stylesheet" href="/css/credentialForm.css">
 </head>
 
 <body>
+    <!-- navbar -->
     <nav>
         <p><a href="/">PasswordManager</a></p>
         <div class="profileAndLogout">
@@ -21,6 +24,33 @@
             <button id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
         </div>
     </nav>
+
+    <!-- website paragraphs -->
+    <div class="websitePara">
+        <h1>Your Personal Password Manager</h1>
+        <p>We prioritize your security above all else. We understand the importance of safeguarding your valuable passwords, which is why we've implemented top-notch encryption and stringent security measures to keep your data safe. With bank-grade protection, you can rest easy knowing that your passwords are shielded from prying eyes. We are dedicated to providing you with peace of mind, ensuring that your passwords are stored securely and encrypted, allowing you to access them with confidence. Your digital life is in safe hands with us.</p>
+    </div>
+
+    <!-- how to use -->
+    <div class="howToUse">
+        <h2>How to use:-</h2>
+        <ol>
+          <li>Enter the name of the website for which you want to store the <strong>username</strong> and <strong>password</strong>.</li>  
+          <li>Enter the <strong>username</strong> and <strong>password</strong> in the respective fields below the website's name field.</li>  
+          <li>You have been provided with the <strong>copy button</strong> with which you can directly copy the username and password.</li>  
+          <li>If you want to delete any field then you are provided with the <strong>delete button</strong> as well.</li>  
+        </ol>
+    </div>
+
+    <!-- Input area -->
+    <form class="enterDetails">
+        <h3>Save Here</h3>
+        <input type="text" id="websiteName" placeholder="Website's name">
+        <input type="text" id="username" placeholder="Enter username/email">
+        <input type="text" id="password" placeholder="Enter Password">
+        <button type="submit" id="saveBtn"><i class="fa-regular fa-floppy-disk"></i> Save</button>
+    </form>
+
     <script src="https://kit.fontawesome.com/e6506fb756.js" crossorigin="anonymous"></script>
     <script>
         let logoutBtn = document.getElementById('logoutBtn')
