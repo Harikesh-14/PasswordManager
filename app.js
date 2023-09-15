@@ -7,6 +7,7 @@ require('dotenv').config()
 // database related imports
 require('./database/conn')
 const profileDetail = require('./database/userDetails')
+const userTableImport = require('./database/userTable')
 const { initializePassport, isAuthenticated } = require('./passportConfig');
 
 // establishing the port
