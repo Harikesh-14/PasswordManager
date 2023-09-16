@@ -32,11 +32,11 @@
     </div>
 
     <!-- Input area -->
-    <form class="enterDetails">
+    <form method="post">
         <h2>Save Here</h2>
-        <input type="text" id="websiteName" placeholder="Website's name">
-        <input type="text" id="username" placeholder="Enter username/email">
-        <input type="text" id="password" placeholder="Enter Password">
+        <input type="text" name="websiteName" id="websiteName" placeholder="Website's name" required>
+        <input type="text" name="websiteUsername" id="username" placeholder="Enter username/email" required>
+        <input type="text" name="websitePassword" id="password" placeholder="Enter Password" required>
         <button type="submit" id="saveBtn"><i class="fa-regular fa-floppy-disk"></i> Save</button>
     </form>
 

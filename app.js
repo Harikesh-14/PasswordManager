@@ -76,7 +76,10 @@ app.post('/register-user', async (req, res) => {
         res.redirect('/')
     } catch (err) {
         console.log("Ann error occurred")
-        res.status(500).json({ error: "Error while registering the detail", errorMessage: err })
+        res.status(500).json({ 
+            error: "Error while registering the detail", 
+            errorMessage: err 
+        })
     }
 })
 
@@ -87,9 +90,33 @@ app.get('/profile', isAuthenticated, async (req, res) => {
         res.render('profile', { firstName, lastName, emailID, password })
     } catch (err) {
         console.log("ERROR")
-        res.status(500).json({ error: "Error in retrieving the details", errorMessage: err })
+        res.status(500).json({
+            error: "Error in retrieving the details",
+            errorMessage: err
+        })
     }
 })
+
+app.post('/profile', isAuthenticated, async (req, res) => {
+    try {
+        const userTable = new userTableImport({
+            websiteCredId: req.user._id, // Assuming you want to associate it with the currently logged-in user
+            websiteName: req.body.websiteName,
+            websiteUsername: req.body.websiteUsername,
+            websitePassword: req.body.websitePassword,
+        });
+
+        await userTable.save();
+        res.redirect('/profile')
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({
+            error: "Error in inserting the details",
+            errorMessage: err,
+        });
+    }
+});
+
 
 // logout route
 app.get('/logout', function (req, res, next) {
