@@ -5,6 +5,10 @@
     font-family: 'Poppins';
 }
 
+body {
+    overflow-x: hidden;
+}
+
 nav {
     width: 100vw;
     height: auto;

@@ -1,0 +1,51 @@
+.user-data-table {
+    width: 80vw;
+    padding: 10px;
+    margin: 50px auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.user-data-table > h2 {
+    color: white;
+}
+
+table, td, th {
+    border: 1px solid;
+    padding: 10px;
+    color: white;
+}
+
+.user-data-table table {
+    border-collapse: collapse;
+    border-radius: 4px;
+    background-color: #303030a0;
+}
+
+.user-data-table table tr td .copyBtn {
+    height: 20px;
+    width: 20px;
+    margin: auto auto;
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+.user-data-table table tr td .copyBtn:hover{
+    color: #000000;
+}
+
+.user-data-table table tr td .deleteBtn {
+    background-color: #DC3545;
+    border: none;
+    border-radius: 3px;
+    width: 100px;
+    height: 40px;
+    color: white;
+    font-size: 110%;
+    cursor: pointer;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.19);
+}

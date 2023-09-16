@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/websiteInfo.css">
     <link rel="stylesheet" href="/css/credentialForm.css">
+    <link rel="stylesheet" href="/css/userTableData.css">
+    <link rel="stylesheet" href="/css/copiedBox.css">
 </head>
 
 <body>
@@ -18,7 +20,9 @@
         <div class="profileAndLogout">
             <div class="profileContainer">
                 <img src="/pics/loginAvatar.png" alt="User Logo">
-                <p><%= firstName %></p>
+                <p>
+                    <%= firstName %>
+                </p>
                 <p><i class="fa-solid fa-caret-down"></i></p>
             </div>
             <button id="logoutBtn"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
@@ -28,7 +32,12 @@
     <!-- website paragraphs -->
     <div class="websitePara">
         <h1>Your Personal Password Manager</h1>
-        <p>We prioritize your security above all else. We understand the importance of safeguarding your valuable passwords, which is why we've implemented top-notch encryption and stringent security measures to keep your data safe. With bank-grade protection, you can rest easy knowing that your passwords are shielded from prying eyes. We are dedicated to providing you with peace of mind, ensuring that your passwords are stored securely and encrypted, allowing you to access them with confidence. Your digital life is in safe hands with us.</p>
+        <p>We prioritize your security above all else. We understand the importance of safeguarding your valuable
+            passwords, which is why we've implemented top-notch encryption and stringent security measures to keep your
+            data safe. With bank-grade protection, you can rest easy knowing that your passwords are shielded from
+            prying eyes. We are dedicated to providing you with peace of mind, ensuring that your passwords are stored
+            securely and encrypted, allowing you to access them with confidence. Your digital life is in safe hands with
+            us.</p>
     </div>
 
     <!-- Input area -->
@@ -41,6 +50,45 @@
     </form>
 
     <!-- Your details will be shown here in the form of table -->
+    <div class="user-data-table">
+        <h2>Your Saved Website Credentials</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Website Name</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% userTableData.forEach(function(data) { %>
+                    <tr>
+                        <td>
+                            <%= data.websiteName %>
+                            <button class="copyBtn" id="copyBtn"><i class="fa-solid fa-copy"></i></button>
+                        </td>
+                        <td>
+                            <%= data.websiteUsername %>
+                            <button class="copyBtn" id="copyBtn"><i class="fa-solid fa-copy"></i></button>
+                        </td>
+                        <td>
+                            <%= data.websitePassword %>
+                            <button class="copyBtn" id="copyBtn"><i class="fa-solid fa-copy"></i></button>
+                        </td>
+                        <td>
+                            <button class="deleteBtn" id="deleteBtn">Delete</button>
+                        </td>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- copied dialog box -->
+    <div class="copiedBox" id="copiedBox">
+        <p>Text Copied!</p>
+    </div>
 
     <script src="https://kit.fontawesome.com/e6506fb756.js" crossorigin="anonymous"></script>
     <script src="/js/profilePage.js"></script>

@@ -83,22 +83,25 @@ app.post('/register-user', async (req, res) => {
     }
 })
 
-// profile page routes
 app.get('/profile', isAuthenticated, async (req, res) => {
     try {
-        const { firstName, lastName, emailID, password } = req.user
-        res.render('profile', { firstName, lastName, emailID, password })
+        // Fetch userTableData here
+        const userTableData = await userTableImport.find({ websiteCredId: req.user._id });
+
+        // Render the 'profile' template and pass userTableData to it
+        res.render('profile', { userTableData, firstName: req.user.firstName });
     } catch (err) {
-        console.log("ERROR")
+        console.error(err);
         res.status(500).json({
             error: "Error in retrieving the details",
             errorMessage: err
-        })
+        });
     }
-})
+});
 
 app.post('/profile', isAuthenticated, async (req, res) => {
     try {
+        // Create a new userTable entry associated with the currently logged-in user
         const userTable = new userTableImport({
             websiteCredId: req.user._id, // Assuming you want to associate it with the currently logged-in user
             websiteName: req.body.websiteName,
@@ -106,8 +109,10 @@ app.post('/profile', isAuthenticated, async (req, res) => {
             websitePassword: req.body.websitePassword,
         });
 
+        // Save the userTable entry
         await userTable.save();
-        res.redirect('/profile')
+
+        res.redirect('/profile');
     } catch (err) {
         console.error(err);
         res.status(500).json({
@@ -116,7 +121,6 @@ app.post('/profile', isAuthenticated, async (req, res) => {
         });
     }
 });
-
 
 // logout route
 app.get('/logout', function (req, res, next) {

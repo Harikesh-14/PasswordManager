@@ -1,0 +1,18 @@
+.copiedBox {
+    width: auto;
+    padding: 15px 15px;
+    background-color:#ffffff76;
+    position: fixed;
+    bottom: 10px;
+    left: 25px;
+    font-size: 110%;
+    font-weight: bold;
+    display: no;
+    border-radius: 4px;
+    color: white;
+    display: none;
+}
+
+.visible {
+    display: block;
+}
