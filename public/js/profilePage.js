@@ -9,14 +9,31 @@ const copyBtns = document.querySelectorAll('.copyBtn');
 
 copyBtns.forEach(copyBtn => {
     copyBtn.addEventListener('click', () => {
+        const textToCopy = copyBtn.parentElement.querySelector('span').getAttribute('data-text');
+
+        // Create a temporary textarea element to copy text to clipboard
+        const tempTextarea = document.createElement('textarea');
+        tempTextarea.value = textToCopy;
+        document.body.appendChild(tempTextarea);
+
+        // Select and copy the text
+        tempTextarea.select();
+        document.execCommand('copy');
+
+        // Remove the temporary textarea
+        document.body.removeChild(tempTextarea);
+
+        // Show the "Text Copied!" message
         copiedBox.classList.add('visible');
-    
+        copiedBox.innerText = 'Text Copied!';
+
+        // Hide the message after a delay
         setTimeout(() => {
             copiedBox.classList.remove('visible');
-            copiedBox.innerText = 'Text Copied!';
         }, 1000);
     });
 });
+
 
 // Add an event listener for delete buttons
 const deleteBtns = document.querySelectorAll('.deleteBtn');

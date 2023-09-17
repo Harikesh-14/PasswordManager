@@ -65,19 +65,25 @@
                 <% userTableData.forEach(function(data) { %>
                     <tr>
                         <td>
-                            <%= data.websiteName %>
-                            <button class="copyBtn" id="copyBtn"><i class="fa-solid fa-copy"></i></button>
+                            <span data-text="<%= data.websiteName %>">
+                                <%= data.websiteName %>
+                            </span>
+                            <button class="copyBtn"><i class="fa-solid fa-copy"></i></button>
                         </td>
                         <td>
-                            <%= data.websiteUsername %>
-                            <button class="copyBtn" id="copyBtn"><i class="fa-solid fa-copy"></i></button>
+                            <span data-text="<%= data.websiteUsername %>">
+                                <%= data.websiteUsername %>
+                            </span>
+                            <button class="copyBtn"><i class="fa-solid fa-copy"></i></button>
                         </td>
                         <td>
-                            <%= data.websitePassword %>
-                            <button class="copyBtn" id="copyBtn"><i class="fa-solid fa-copy"></i></button>
+                            <span data-text="<%= data.websitePassword %>">
+                                <%= data.websitePassword %>
+                            </span>
+                            <button class="copyBtn"><i class="fa-solid fa-copy"></i></button>
                         </td>
                         <td>
-                            <button class="deleteBtn" id="deleteBtn" data-id="<%= data._id %>">Delete</button>
+                            <button class="deleteBtn" data-id="<%= data._id %>">Delete</button>
                         </td>
                     </tr>
                     <% }); %>
