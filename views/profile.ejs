@@ -45,7 +45,7 @@
         <h2>Save Here</h2>
         <input type="text" name="websiteName" id="websiteName" placeholder="Website's name" required>
         <input type="text" name="websiteUsername" id="username" placeholder="Enter username/email" required>
-        <input type="text" name="websitePassword" id="password" placeholder="Enter Password" required>
+        <input type="password" name="websitePassword" id="password" placeholder="Enter Password" required>
         <button type="submit" id="saveBtn"><i class="fa-regular fa-floppy-disk"></i> Save</button>
     </form>
 
@@ -77,7 +77,7 @@
                             <button class="copyBtn" id="copyBtn"><i class="fa-solid fa-copy"></i></button>
                         </td>
                         <td>
-                            <button class="deleteBtn" id="deleteBtn">Delete</button>
+                            <button class="deleteBtn" id="deleteBtn" data-id="<%= data._id %>">Delete</button>
                         </td>
                     </tr>
                     <% }); %>

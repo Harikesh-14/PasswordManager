@@ -49,3 +49,7 @@ table, td, th {
     cursor: pointer;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.19);
 }
+
+.user-data-table table tr td .deleteBtn:hover {
+    background-color: #de162a;
+}

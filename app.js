@@ -122,6 +122,21 @@ app.post('/profile', isAuthenticated, async (req, res) => {
     }
 });
 
+app.delete('/delete-entry/:id', isAuthenticated, async (req, res) => {
+    try {
+        const id = req.params.id;
+        // Use Mongoose to find and delete the entry by its ID
+        await userTableImport.findByIdAndDelete(id);
+        res.sendStatus(200); // Send a success status code
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({
+            error: "Error in deleting the entry",
+            errorMessage: err
+        });
+    }
+});
+
 // logout route
 app.get('/logout', function (req, res, next) {
     req.logout(function (err) {
