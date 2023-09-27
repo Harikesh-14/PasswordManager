@@ -1,6 +1,6 @@
 # Password Manager
 
-![Password Manager Logo](password-manager-logo.png)
+![Password Manager Logo](public/pics/password-manager-icon.png)
 
 Password Manager is a secure and user-friendly web application built with Express.js and MongoDB. It allows you to manage and store your passwords and sensitive information in one place while ensuring data security.
 
