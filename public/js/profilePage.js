@@ -23,11 +23,9 @@ copyBtns.forEach(copyBtn => {
         // Remove the temporary textarea
         document.body.removeChild(tempTextarea);
 
-        // Show the "Text Copied!" message
         copiedBox.classList.add('visible');
         copiedBox.innerText = 'Text Copied!';
 
-        // Hide the message after a delay
         setTimeout(() => {
             copiedBox.classList.remove('visible');
         }, 1000);
@@ -41,14 +39,12 @@ deleteBtns.forEach(deleteBtn => {
     deleteBtn.addEventListener('click', () => {
         const id = deleteBtn.getAttribute('data-id');
         if (confirm("Are you sure you want to delete this entry?")) {
-            // Send an AJAX request to the server to delete the entry
             fetch(`/delete-entry/${id}`, {
                 method: 'DELETE',
             })
             .then(response => {
                 if (response.ok) {
-                    // Reload the page or update the UI as needed
-                    window.location.reload(); // For example, you can reload the page
+                    window.location.reload();
                 } else {
                     console.error('Error deleting entry');
                 }
